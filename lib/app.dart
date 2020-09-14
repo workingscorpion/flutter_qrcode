@@ -20,12 +20,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Alarm App',
+      title: 'QR_GEN',
       onGenerateRoute: Router.generateRoute,
       navigatorKey: NavigationStore.instance.navigatorKey,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          // primarySwatch: Colors.blue,
+          ),
     );
   }
 }
