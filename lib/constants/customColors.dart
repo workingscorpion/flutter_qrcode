@@ -22,7 +22,7 @@ class CustomColors {
 
   static final MaterialColor mainColor = MaterialColor(0xFF01A7B6, colorss);
 
-  static final Color primaryColor = Color.fromRGBO(1, 167, 182, 0.75);
+  static final Color primaryColor = TinyColor.fromString('#7ed6df').color;
   static final Color textBlack = TinyColor.fromString('#4a4a4a').color;
   static final Color textBrightGrey = TinyColor.fromString('#e0e0e0').color;
   static final Color textGrey = TinyColor.fromString('#bebebe').color;
