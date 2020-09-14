@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:qr_gen/constants/customColors.dart';
-import 'package:qr_gen/pages/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../router/router.dart';
 
@@ -26,16 +26,17 @@ class _SplashPageState extends State<SplashPage> {
 
   startTime() async {
     var _duration = Duration(seconds: 2);
-    return Timer(_duration, moveToHome);
+    return Timer(_duration, executeRoute);
   }
 
-  Future moveToHome() async {
-    Router.toHome();
-  }
-
-  routeToHome() {
-    // Navigator.of(context)
-    //     .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+  Future executeRoute() async {
+    final prefs = await SharedPreferences.getInstance();
+    final phoneNumber = prefs.getString('phone_number');
+    if (phoneNumber != null) {
+      Router.toQrCodePage(phoneNumber);
+    } else {
+      Router.toHome();
+    }
   }
 
   @override
