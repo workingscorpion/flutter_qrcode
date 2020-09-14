@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:scorpion_alarm_app/widget/alarmItem.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:phone_number/phone_number.dart';
+import 'package:libphonenumber/libphonenumber.dart';
+
+import '../router/router.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -10,8 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> alarmTimeList = List();
-  List<String> alarmNameList = List();
+  final phoneNumberController = TextEditingController();
 
   @override
   void initState() {
@@ -19,21 +21,31 @@ class _HomePageState extends State<HomePage> {
     load();
   }
 
-  Future load() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      alarmTimeList = prefs.getStringList("alarmTimeList");
-      alarmNameList = prefs.getStringList("alarmNameList");
-    });
-  }
+  Future load() async {}
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: const EdgeInsets.all(8.0),
-        itemCount: alarmTimeList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return AlarmItem(alarmTimeList[index], alarmNameList[index]);
-        });
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Test"),
+      ),
+      body: Center(
+          child: ListView(
+        children: <Widget>[
+          Container(
+              child: TextFormField(
+            controller: phoneNumberController,
+            keyboardType: TextInputType.phone,
+            decoration: InputDecoration(labelText: "Phone number"),
+          )),
+          RaisedButton(
+            child: Text("QR Code Generate"),
+            onPressed: () {
+              Router.toQrCodePage(phoneNumberController.text);
+            },
+          )
+        ],
+      )),
+    );
   }
 }

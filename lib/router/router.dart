@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scorpion_alarm_app/pages/qrcode.dart';
 import 'package:scorpion_alarm_app/pages/splash.dart';
 // import 'package:mobx/mobx.dart';
 // import 'package:scorpion_alarm_app/pages/auth/loginPage.dart';
@@ -21,6 +22,8 @@ import 'package:scorpion_alarm_app/pages/splash.dart';
 import 'package:scorpion_alarm_app/router/routeNames.dart';
 // import 'package:scorpion_alarm_app/stores/issue/issueStore.dart';
 import 'package:scorpion_alarm_app/stores/navigationStore.dart';
+
+import '../pages/home.dart';
 // import 'package:scorpion_alarm_app/utils/topDownModalRoute.dart';
 
 class Router {
@@ -40,17 +43,17 @@ class Router {
       //       settings: settings,
       //     );
 
-      //   case RouteNames.Home:
-      //     return MaterialPageRoute(
-      //       builder: (context) => HomePage(),
-      //       settings: settings,
-      //     );
+      case RouteNames.Home:
+        return MaterialPageRoute(
+          builder: (context) => HomePage(),
+          settings: settings,
+        );
 
-      //   case RouteNames.SelectHotel:
-      //     return MaterialPageRoute(
-      //       builder: (context) => SelectHotelPage(),
-      //       settings: settings,
-      //     );
+      case RouteNames.QrCode:
+        return MaterialPageRoute(
+          builder: (context) => QrCodePage(settings.arguments),
+          settings: settings,
+        );
 
       //   case RouteNames.IssueDetail:
       //     return MaterialPageRoute(
@@ -156,14 +159,14 @@ class Router {
 
   // static toLogin() => _navigationStore.reset(RouteNames.Login);
 
-  // static toHome() => _navigationStore.reset(RouteNames.Home);
+  static toHome() => _navigationStore.reset(RouteNames.Home);
 
   // static toSelectHotel() => _navigationStore.reset(RouteNames.SelectHotel);
 
-  // static toWriteIssue({String issueObjectId}) => _navigationStore.push(
-  //       RouteNames.WriteIssue,
-  //       arguments: issueObjectId,
-  //     );
+  static toQrCodePage(String phoneNumber) => _navigationStore.push(
+        RouteNames.QrCode,
+        arguments: phoneNumber,
+      );
 
   // static openFilter(Store store) =>
   //     _navigationStore.push(RouteNames.FilterModal, arguments: store);

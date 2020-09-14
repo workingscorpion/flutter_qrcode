@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:scorpion_alarm_app/constants/customColors.dart';
 import 'package:scorpion_alarm_app/pages/home.dart';
 
+import '../router/router.dart';
+
 class SplashPage extends StatefulWidget {
   SplashPage({Key key}) : super(key: key);
 
@@ -28,12 +30,12 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future moveToHome() async {
-    routeToHome();
+    Router.toHome();
   }
 
   routeToHome() {
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+    // Navigator.of(context)
+    //     .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   @override
@@ -52,7 +54,7 @@ class _SplashPageState extends State<SplashPage> {
               Container(
                 width: 250,
                 height: 250,
-                child: Image.asset('assets/splash/splash.png'),
+                // child: Image.asset('assets/splash/splash.png'),
               ),
               Container(
                 child: Text(
