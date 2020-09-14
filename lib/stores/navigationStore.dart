@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:scorpion_alarm_app/utils/lazy.dart';
+import 'package:qr_gen/utils/lazy.dart';
 
 part 'navigationStore.g.dart';
 

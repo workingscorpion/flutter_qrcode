@@ -1,4 +1,4 @@
-package com.example.scorpion_alarm_app
+package com.example.qr_gen
 
 import io.flutter.embedding.android.FlutterActivity
 

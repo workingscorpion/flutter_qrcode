@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:scorpion_alarm_app/router/router.dart';
-import 'package:scorpion_alarm_app/stores/navigationStore.dart';
+import 'package:qr_gen/router/router.dart';
+import 'package:qr_gen/stores/navigationStore.dart';
 
 class App extends StatelessWidget {
   App() {

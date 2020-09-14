@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scorpion_alarm_app/app.dart';
+import 'package:qr_gen/app.dart';
 
 // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 

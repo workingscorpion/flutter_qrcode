@@ -1,4 +1,4 @@
-# scorpion_alarm_app
+# qr_gen
 
 A new Flutter project.
 

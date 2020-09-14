@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:scorpion_alarm_app/constants/customColors.dart';
-import 'package:scorpion_alarm_app/pages/home.dart';
+import 'package:qr_gen/constants/customColors.dart';
+import 'package:qr_gen/pages/home.dart';
 
 import '../router/router.dart';
 
