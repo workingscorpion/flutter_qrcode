@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:qr_gen/utils/flushbarHelper.dart';
 
 class SnackBarHelper {
   static const Duration _duration = Duration(seconds: 2);
 
-  static Future show({
-    BuildContext context,
-    ScaffoldState state,
-    String message,
-  }) async {
-    (state ?? Scaffold.of(context)).hideCurrentSnackBar();
-    (state ?? Scaffold.of(context)).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: _duration,
-      ),
-    );
+  static showInformation({BuildContext context, String title, String message}) {
+    FlushbarHelper.createInformation(
+      message: message,
+      title: title,
+      duration: Duration(seconds: 2),
+    )..show(context);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:phone_number/phone_number.dart';
-import 'package:libphonenumber/libphonenumber.dart';
+import 'package:qr_gen/constants/customColors.dart';
+import 'package:qr_gen/utils/snackBarHelper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../router/router.dart';
 
@@ -16,36 +16,100 @@ class _HomePageState extends State<HomePage> {
   final phoneNumberController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    load();
-  }
-
-  Future load() async {}
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Test"),
-      ),
-      body: Center(
+        backgroundColor: Colors.white,
+        body: Container(
+          padding: EdgeInsets.only(right: 30, left: 30),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          color: CustomColors.primaryColor,
           child: ListView(
-        children: <Widget>[
-          Container(
-              child: TextFormField(
-            controller: phoneNumberController,
-            keyboardType: TextInputType.phone,
-            decoration: InputDecoration(labelText: "Phone number"),
-          )),
-          RaisedButton(
-            child: Text("QR Code Generate"),
-            onPressed: () {
-              Router.toQrCodePage(phoneNumberController.text);
-            },
-          )
-        ],
-      )),
-    );
+            children: <Widget>[
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.32,
+              ),
+              Container(
+                child: TextField(
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  keyboardType: TextInputType.phone,
+                  controller: phoneNumberController,
+                  decoration: new InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white, width: 1.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white, width: 1.0),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.phone,
+                      color: Colors.white,
+                    ),
+                    hintText: 'Phone Number',
+                  ),
+                ),
+
+                //     TextField(
+                //   decoration: InputDecoration(
+                //     border: OutlineInputBorder(
+                //         borderSide: BorderSide(color: Colors.teal, width: 1)),
+                //     labelText: 'Phone Number',
+                //     prefixIcon: Icon(
+                //       Icons.phone,
+                //       color: Colors.white,
+                //     ),
+                //     // suffixStyle: const TextStyle(color: Colors.white)
+                //   ),
+                // )
+              ),
+              // Container(
+              //     child: TextFormField(
+              //   controller: phoneNumberController,
+              //   keyboardType: TextInputType.phone,
+              //   decoration: InputDecoration(
+              //       labelText: "Phone number", fillColor: Colors.white),
+              // )),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+              ),
+              Container(
+                padding: EdgeInsets.only(right: 75, left: 75),
+                height: 80,
+                width: 50,
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(color: CustomColors.primaryColor)),
+                  // child: Text("QR Code Generate"),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 60,
+                        child: Image.asset(
+                          'assets/icons/logo.png',
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                      Text('QRCode Generate')
+                    ],
+                  ),
+                  onPressed: () async {
+                    if (phoneNumberController.text.length >= 10) {
+                      final prefs = await SharedPreferences.getInstance();
+                      prefs.setString(
+                          'phone_number', phoneNumberController.text);
+                      Router.toQrCodePage(phoneNumberController.text);
+                    } else {
+                      SnackBarHelper.showInformation(
+                          context: context,
+                          title: "생성 불가",
+                          message: "휴대폰 번호 길이가 너무 짧습니다.");
+                    }
+                  },
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
