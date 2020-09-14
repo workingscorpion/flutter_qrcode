@@ -54,16 +54,25 @@ class _SplashPageState extends State<SplashPage> {
               Container(
                 width: 250,
                 height: 250,
-                // child: Image.asset('assets/splash/splash.png'),
+                child: Image.asset('assets/splash/splash.png'),
               ),
-              Container(
-                child: Text(
-                  '따 : 봉',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                ),
+              Column(
+                children: <Widget>[
+                  Text(
+                    'QR코드 생성기',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30),
+                  ),
+                  Text(
+                    'by workingscorpion',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
+                  )
+                ],
               )
             ],
           )),
