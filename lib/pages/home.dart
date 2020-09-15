@@ -36,18 +36,18 @@ class _HomePageState extends State<HomePage> {
                   keyboardType: TextInputType.phone,
                   controller: phoneNumberController,
                   decoration: new InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white, width: 1.0),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white, width: 1.0),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.phone,
-                      color: Colors.white,
-                    ),
-                    hintText: 'Phone Number',
-                  ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 1.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 1.0),
+                      ),
+                      prefixIcon: Icon(
+                        Icons.phone,
+                        color: Colors.white,
+                      ),
+                      hintText: 'Phone Number',
+                      hintStyle: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
 
                 //     TextField(
@@ -78,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                 height: 80,
                 width: 50,
                 child: RaisedButton(
+                  color: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: BorderSide(color: CustomColors.primaryColor)),
