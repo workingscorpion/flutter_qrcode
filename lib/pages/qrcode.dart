@@ -4,9 +4,9 @@ import 'package:qr_gen/constants/customColors.dart';
 import 'package:qr_gen/router/router.dart';
 
 class QrCodePage extends StatelessWidget {
-  QrCodePage(this.phoneNumber);
+  QrCodePage(this.token);
 
-  final String phoneNumber;
+  final String token;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,9 @@ class QrCodePage extends StatelessWidget {
       body: Center(
           child: Container(
               child: QrImage(
-        data: phoneNumber,
-        version: QrVersions.auto,
-        size: 200.0,
+        data: token,
+        version: 11,
+        size: 300.0,
       ))),
       floatingActionButton: FloatingActionButton(
         backgroundColor: CustomColors.primaryColor,

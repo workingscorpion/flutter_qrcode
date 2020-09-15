@@ -55,6 +55,9 @@ dependencies:
   phone_number: ^0.6.2+4
   libphonenumber: ^1.0.1
 
+  #jwt
+  jaguar_jwt: ^2.1.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

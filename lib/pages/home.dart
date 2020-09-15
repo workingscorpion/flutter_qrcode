@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:qr_gen/constants/customColors.dart';
 import 'package:qr_gen/utils/snackBarHelper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:jaguar_jwt/jaguar_jwt.dart';
+import 'package:intl/intl.dart';
 import '../router/router.dart';
 
 class HomePage extends StatefulWidget {
@@ -98,7 +99,20 @@ class _HomePageState extends State<HomePage> {
                       final prefs = await SharedPreferences.getInstance();
                       prefs.setString(
                           'phone_number', phoneNumberController.text);
-                      Router.toQrCodePage(phoneNumberController.text);
+
+                      final key = 'workingscorpion';
+                      final claimSet = new JwtClaim(
+                          subject: phoneNumberController.text +
+                              '\n${DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now())}',
+                          issuer: 'workingscorpion',
+                          audience: <String>['workingscorpion.shop'],
+                          otherClaims: <String, dynamic>{
+                            'typ': 'authnresponse',
+                            'pld': {'k': 'v'}
+                          },
+                          maxAge: Duration(minutes: 1));
+
+                      Router.toQrCodePage(issueJwtHS256(claimSet, key));
                     } else {
                       SnackBarHelper.showInformation(
                           context: context,

@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:qr_gen/constants/customColors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:jaguar_jwt/jaguar_jwt.dart';
+import 'package:intl/intl.dart';
 import '../router/router.dart';
 
 class SplashPage extends StatefulWidget {
@@ -33,7 +34,19 @@ class _SplashPageState extends State<SplashPage> {
     final prefs = await SharedPreferences.getInstance();
     final phoneNumber = prefs.getString('phone_number');
     if (phoneNumber != null) {
-      Router.toQrCodePage(phoneNumber);
+      final key = 'workingscorpion';
+      final claimSet = new JwtClaim(
+          subject: phoneNumber +
+              '\n${DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now())}',
+          issuer: 'workingscorpion',
+          audience: <String>['workingscorpion.shop'],
+          otherClaims: <String, dynamic>{
+            'typ': 'authnresponse',
+            'pld': {'k': 'v'}
+          },
+          maxAge: Duration(minutes: 1));
+
+      Router.toQrCodePage(issueJwtHS256(claimSet, key));
     } else {
       Router.toHome();
     }
